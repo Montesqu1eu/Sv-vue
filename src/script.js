@@ -1,4 +1,4 @@
-// var func = function(msg) {
+// const func = function (msg) {
 //   alert(msg);
 // };
 

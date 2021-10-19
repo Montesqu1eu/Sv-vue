@@ -1,3 +1,3 @@
-export const firstInfo = "first info";
+// export const firstInfo = 'Zdorova';
 
-export const secondInfo = "second info";
+// export const secondInfo = 'Salam';
