@@ -48,7 +48,6 @@ export default {
   computed: {
     filteredProducts() {
       let filteredProducts = products;
-
       if (this.filterPriceFrom > 0) {
         filteredProducts = filteredProducts.filter(
           (product) => product.price > this.filterPriceFrom,
@@ -69,7 +68,6 @@ export default {
           (product) => product.colorId === this.filterColorId,
         );
       }
-
       return filteredProducts;
     },
     products() {
