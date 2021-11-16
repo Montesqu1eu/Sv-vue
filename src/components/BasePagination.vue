@@ -28,7 +28,8 @@
       <button
         class="pagination__link pagination__link--arrow"
         aria-label="Следующая страница"
-        @click.prevent="paginate(page + 1)"
+        :disabled="page===pages"
+        @click="paginate(page + 1)"
         :class="{'pagination__link--disabled': page==pages}"
       >
         <svg
