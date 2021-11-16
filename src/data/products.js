@@ -2,6 +2,16 @@ export default [
   {
     id: 1,
     categoryId: 4,
+    color: [
+      {
+        colorId: 1,
+        colorValue: '#73B6EA',
+      },
+      {
+        colorId: 2,
+        colorValue: '#8BE000',
+      },
+    ],
     title: 'Радионяня Motorola MBP16',
     price: 3690,
     image: '/img/radio.jpg',
@@ -9,6 +19,20 @@ export default [
   {
     id: 2,
     categoryId: 1,
+    color: [
+      {
+        colorId: 1,
+        colorValue: '#73B6EA',
+      },
+      {
+        colorId: 2,
+        colorValue: '#8BE000',
+      },
+      {
+        colorId: 3,
+        colorValue: '#222',
+      },
+    ],
     title: 'Ультразвуковая зубная щётка Playbrush Smart Sonic',
     price: 5660,
     image: '/img/toothbrush.jpg',
@@ -16,6 +40,8 @@ export default [
   {
     id: 3,
     categoryId: 2,
+    colorId: 1,
+    color: '#73B6EA',
     title: 'Смартфон Xiaomi Mi Mix 3 6/128GB',
     price: 21790,
     image: '/img/phone.jpg',
@@ -23,6 +49,8 @@ export default [
   {
     id: 4,
     categoryId: 3,
+    colorId: 2,
+    color: '#8BE000',
     title: 'Электроскейт Razor Cruiser',
     price: 24690,
     image: '/img/board.jpg',
@@ -30,6 +58,8 @@ export default [
   {
     id: 5,
     categoryId: 2,
+    colorId: 2,
+    color: '#8BE000',
     title: 'Смартфон Xiaomi Mi A3 4/64GB Android One',
     price: 14960,
     image: '/img/phone-2.jpg',
@@ -37,6 +67,8 @@ export default [
   {
     id: 6,
     categoryId: 2,
+    colorId: 3,
+    color: '#222',
     title: 'Смартфон Xiaomi Redmi 6/128GB',
     price: 8960,
     image: '/img/phone-3.jpg',
@@ -44,6 +76,8 @@ export default [
   {
     id: 7,
     categoryId: 3,
+    colorId: 2,
+    color: '#8BE000',
     title: 'Электрический дрифт-карт Razor Crazy Cart',
     price: 39900,
     image: '/img/bicycle.jpg',
@@ -51,6 +85,8 @@ export default [
   {
     id: 8,
     categoryId: 3,
+    colorId: 1,
+    color: '#73B6EA',
     title: 'Гироскутер Razor Hovertrax 2.0',
     price: 34900,
     image: '/img/wheels.jpg',
@@ -58,6 +94,8 @@ export default [
   {
     id: 9,
     categoryId: 3,
+    colorId: 2,
+    color: '#8BE000',
     title: 'Детский трюковой самокат Razor Grom',
     price: 4990,
     image: '/img/scooter.jpg',
@@ -65,6 +103,8 @@ export default [
   {
     id: 10,
     categoryId: 5,
+    colorId: 3,
+    color: '#222',
     title: 'Наушники AirPods с беспроводным зарядным футляром',
     price: 16560,
     image: '/img/airpods.jpg',

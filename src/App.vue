@@ -3,12 +3,16 @@
     <main class="content container">
       <div class="content__top content__top--catalog">
         <h1 class="content__title">Каталог</h1>
-        <span class="content__info"> 153 товара </span>
+        <span class="content__info"> {{ filteredProducts.length }} </span>
       </div>
 
       <div class="content__catalog">
-        <product-filter :price-from.sync="filterPriceFrom" :price-to.sync="filterPriceTo"
-                        :category-id.sync="filterCategoryId"/>
+        <product-filter
+          :price-from.sync="filterPriceFrom"
+          :price-to.sync="filterPriceTo"
+          :category-id.sync="filterCategoryId"
+          :color-id.sync="filterColorId"
+        />
         <section class="catalog">
           <product-list :products="products"/>
           <base-pagination v-model="page" :count="countProducts" :per-page="productsPerPage"/>
@@ -36,6 +40,7 @@ export default {
       filterPriceFrom: 0,
       filterPriceTo: 0,
       filterCategoryId: 0,
+      filterColorId: 0,
       page: 1,
       productsPerPage: 3,
     };
@@ -43,7 +48,6 @@ export default {
   computed: {
     filteredProducts() {
       let filteredProducts = products;
-
       if (this.filterPriceFrom > 0) {
         filteredProducts = filteredProducts.filter(
           (product) => product.price > this.filterPriceFrom,
@@ -59,7 +63,11 @@ export default {
           (product) => product.categoryId === this.filterCategoryId,
         );
       }
-
+      if (this.filterColorId) {
+        filteredProducts = filteredProducts.filter(
+          (product) => product.colorId === this.filterColorId,
+        );
+      }
       return filteredProducts;
     },
     products() {
@@ -69,7 +77,8 @@ export default {
     },
     countProducts() {
       return this.filteredProducts.length;
-    },
+    }
+    ,
   },
 };
 </script>
