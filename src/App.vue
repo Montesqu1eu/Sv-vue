@@ -2,7 +2,9 @@
   <div id="app">
     <main class="content container">
       <div class="content__top content__top--catalog">
-        <h1 class="content__title">Каталог</h1>
+        <h1 class="content__title">
+          Каталог
+        </h1>
         <span class="content__info"> {{ filteredProducts.length }} </span>
       </div>
 
@@ -15,7 +17,11 @@
         />
         <section class="catalog">
           <product-list :products="products"/>
-          <base-pagination v-model="page" :count="countProducts" :per-page="productsPerPage"/>
+          <base-pagination
+            v-model="page"
+            :count="countProducts"
+            :per-page="productsPerPage"
+          />
         </section>
       </div>
     </main>
@@ -29,12 +35,12 @@ import BasePagination from '@/components/BasePagination.vue';
 import ProductFilter from '@/components/ProductFilter.vue';
 
 export default {
+  name: 'App',
   components: {
     ProductList,
     BasePagination,
     ProductFilter,
   },
-  name: 'App',
   data() {
     return {
       filterPriceFrom: 0,
@@ -64,9 +70,7 @@ export default {
         );
       }
       if (this.filterColorId) {
-        filteredProducts = filteredProducts.filter(
-          (product) => product.colorId === this.filterColorId,
-        );
+        filteredProducts = filteredProducts.filter(product => product.colors.some(color => color.colorId === this.filterColorId));
       }
       return filteredProducts;
     },
@@ -77,8 +81,7 @@ export default {
     },
     countProducts() {
       return this.filteredProducts.length;
-    }
-    ,
+    },
   },
 };
 </script>
