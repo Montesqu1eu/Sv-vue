@@ -13,14 +13,21 @@
           height="14"
           fill="currentColor"
         >
-          <use xlink:href="#icon-arrow-left"/>
+          <use xlink:href="#icon-arrow-left" />
         </svg>
       </button>
     </li>
-    <li class="pagination__item" v-for="pageNumber in pages" :key="pageNumber">
-      <a href="#" class="pagination__link"
-         :class="{'pagination__link--current': pageNumber===page}"
-         @click.prevent="paginate(pageNumber)">
+    <li
+      v-for="pageNumber in pages"
+      :key="pageNumber"
+      class="pagination__item"
+    >
+      <a
+        href="#"
+        class="pagination__link"
+        :class="{'pagination__link--current': pageNumber===page}"
+        @click.prevent="paginate(pageNumber)"
+      >
         {{ pageNumber }}
       </a>
     </li>
@@ -29,15 +36,15 @@
         class="pagination__link pagination__link--arrow"
         aria-label="Следующая страница"
         :disabled="page===pages"
-        @click="paginate(page + 1)"
         :class="{'pagination__link--disabled': page==pages}"
+        @click="paginate(page + 1)"
       >
         <svg
           width="8"
           height="14"
           fill="currentColor"
         >
-          <use xlink:href="#icon-arrow-right"/>
+          <use xlink:href="#icon-arrow-right" />
         </svg>
       </button>
     </li>
@@ -46,11 +53,11 @@
 
 <script>
 export default {
+  name: 'BasePagination',
   model: {
     prop: 'page',
     event: 'paginate',
   },
-  name: 'BasePagination',
   props: ['page', 'count', 'perPage'],
   computed: {
     pages() {
