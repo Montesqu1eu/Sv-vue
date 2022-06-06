@@ -11,19 +11,20 @@
     </span>
 
     <div class="product__counter form__counter">
-      <button type="button" aria-label="Убрать один товар">
-        <svg width="10" height="10" fill="currentColor">
-          <use xlink:href="#icon-minus"></use>
-        </svg>
-      </button>
+      <!--      <button type="button" aria-label="Убрать один товар">-->
+      <!--        <svg width="10" height="10" fill="currentColor">-->
+      <!--          <use xlink:href="#icon-minus"></use>-->
+      <!--        </svg>-->
+      <!--      </button>-->
 
-      <input type="text" v-model="amount" name="count">
+      <!--            <input type="text" v-model="amount" name="count">-->
+      <Counter v-model="amount"/>
 
-      <button type="button" aria-label="Добавить один товар">
-        <svg width="10" height="10" fill="currentColor">
-          <use xlink:href="#icon-plus"></use>
-        </svg>
-      </button>
+      <!--      <button type="button" aria-label="Добавить один товар">-->
+      <!--        <svg width="10" height="10" fill="currentColor">-->
+      <!--          <use xlink:href="#icon-plus"></use>-->
+      <!--        </svg>-->
+      <!--      </button>-->
     </div>
 
     <b class="product__price">
@@ -46,9 +47,11 @@
 <script>
 import numberFormat from '@/helpers/numberFormat';
 import { mapMutations } from 'vuex';
+import Counter from '@/components/Counter';
 
 export default {
   name: 'CartItem',
+  components: { Counter },
   filters: {
     numberFormat
   },

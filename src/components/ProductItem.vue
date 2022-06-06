@@ -2,7 +2,7 @@
   <li class="catalog__item">
     <router-link
       class="catalog__pic"
-      :to="{name: 'product', params:{id: product.id}}"
+      :to="{name: 'product', params:{ id: product.id} }"
     >
       <img
         :src="product.image"
@@ -22,12 +22,12 @@
     <ul class="colors colors--black">
       <li
         v-for="color in product.colors"
-        :key="color.colorId"
+        :key="color.id"
         class="colors__item"
       >
         <label class="colors__label">
           <input
-            v-model="color.colorId"
+            v-model="color.id"
             class="colors__radio sr-only"
             type="radio"
             value="#73B6EA"
@@ -35,7 +35,7 @@
           >
           <span
             class="colors__value"
-            :style="{'background-color': color.colorValue}"
+            :style="{'background-color': color.code}"
           />
         </label>
       </li>
@@ -56,7 +56,6 @@ export default {
   methods: {
     goToPage
   }
-
 };
 </script>
 

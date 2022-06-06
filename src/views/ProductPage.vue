@@ -37,64 +37,6 @@
             alt="Название товара"
           >
         </div>
-        <!--        <ul class="pics__list">-->
-        <!--          <li class="pics__item">-->
-        <!--            <a-->
-        <!--              href=""-->
-        <!--              class="pics__link pics__link&#45;&#45;current"-->
-        <!--            >-->
-        <!--              <img-->
-        <!--                width="98"-->
-        <!--                height="98"-->
-        <!--                src="img/phone-square-1.jpg"-->
-        <!--                srcset="img/phone-square-1@2x.jpg 2x"-->
-        <!--                alt="Название товара"-->
-        <!--              >-->
-        <!--            </a>-->
-        <!--          </li>-->
-        <!--          <li class="pics__item">-->
-        <!--            <a-->
-        <!--              href=""-->
-        <!--              class="pics__link"-->
-        <!--            >-->
-        <!--              <img-->
-        <!--                width="98"-->
-        <!--                height="98"-->
-        <!--                src="img/phone-square-2.jpg"-->
-        <!--                srcset="img/phone-square-2@2x.jpg 2x"-->
-        <!--                alt="Название товара"-->
-        <!--              >-->
-        <!--            </a>-->
-        <!--          </li>-->
-        <!--          <li class="pics__item">-->
-        <!--            <a-->
-        <!--              href=""-->
-        <!--              class="pics__link"-->
-        <!--            >-->
-        <!--              <img-->
-        <!--                width="98"-->
-        <!--                height="98"-->
-        <!--                src="img/phone-square-3.jpg"-->
-        <!--                srcset="img/phone-square-3@2x.jpg 2x"-->
-        <!--                alt="Название товара"-->
-        <!--              >-->
-        <!--            </a>-->
-        <!--          </li>-->
-        <!--          <li class="pics__item">-->
-        <!--            <a-->
-        <!--              class="pics__link"-->
-        <!--              href="#"-->
-        <!--            >-->
-        <!--              <img-->
-        <!--                width="98"-->
-        <!--                height="98"-->
-        <!--                src="img/phone-square-4.jpg"-->
-        <!--                srcset="img/phone-square-4@2x.jpg 2x"-->
-        <!--                alt="Название товара"-->
-        <!--              >-->
-        <!--            </a>-->
-        <!--          </li>-->
-        <!--        </ul>-->
       </div>
 
       <div class="item__info">
@@ -187,41 +129,41 @@
             </fieldset>
 
             <div class="item__row">
-              <div class="form__counter">
-                <button
-                  type="button"
-                  aria-label="Убрать один товар"
-                  @click="productAmount--"
-                >
-                  <svg
-                    width="12"
-                    height="12"
-                    fill="currentColor"
-                  >
-                    <use xlink:href="#icon-minus"/>
-                  </svg>
-                </button>
+              <!--              <div class="form__counter">-->
+              <!--                <button-->
+              <!--                  type="button"-->
+              <!--                  aria-label="Убрать один товар"-->
+              <!--                  @click="productAmount&#45;&#45;"-->
+              <!--                >-->
+              <!--                  <svg-->
+              <!--                    width="12"-->
+              <!--                    height="12"-->
+              <!--                    fill="currentColor"-->
+              <!--                  >-->
+              <!--                    <use xlink:href="#icon-minus"/>-->
+              <!--                  </svg>-->
+              <!--                </button>-->
 
-                <input
-                  type="text"
-                  v-model.number="productAmount"
-                >
+              <!--                <input-->
+              <!--                  type="text"-->
+              <!--                  v-model.number="productAmount"-->
+              <!--                >-->
 
-                <button
-                  type="button"
-                  aria-label="Добавить один товар"
-                  @click="productAmount++"
-                >
-                  <svg
-                    width="12"
-                    height="12"
-                    fill="currentColor"
-                  >
-                    <use xlink:href="#icon-plus"/>
-                  </svg>
-                </button>
-              </div>
-
+              <!--                <button-->
+              <!--                  type="button"-->
+              <!--                  aria-label="Добавить один товар"-->
+              <!--                  @click="productAmount++"-->
+              <!--                >-->
+              <!--                  <svg-->
+              <!--                    width="12"-->
+              <!--                    height="12"-->
+              <!--                    fill="currentColor"-->
+              <!--                  >-->
+              <!--                    <use xlink:href="#icon-plus"/>-->
+              <!--                  </svg>-->
+              <!--                </button>-->
+              <!--              </div>-->
+              <Counter v-model="productAmount"/>
               <button
                 class="button button--primery"
                 type="submit"
@@ -305,9 +247,11 @@
 import products from '@/data/products';
 import categories from '@/data/categories';
 import numberFormat from '@/helpers/numberFormat';
+import Counter from '@/components/Counter';
 
 export default {
   name: 'ProductPage',
+  components: { Counter },
   filters: {
     numberFormat,
   },
@@ -332,8 +276,7 @@ export default {
           amount: this.productAmount
         }
       );
-
-    }
+    },
   }
 };
 </script>
