@@ -18,7 +18,7 @@
       <!--      </button>-->
 
       <!--            <input type="text" v-model="amount" name="count">-->
-      <Counter v-model="amount"/>
+      <Counter :default-num="amount" v-model="amount"/>
 
       <!--      <button type="button" aria-label="Добавить один товар">-->
       <!--        <svg width="10" height="10" fill="currentColor">-->
@@ -28,7 +28,7 @@
     </div>
 
     <b class="product__price">
-      {{ (item.amount * item.product.price) | numberFormat }} ₽
+      {{ (amount * item.product.price) | numberFormat }} ₽
     </b>
 
     <button
@@ -55,27 +55,33 @@ export default {
   filters: {
     numberFormat
   },
+  data() {
+    return {
+      amount: null,
+    };
+  },
   props: {
     item: {
       type: Object,
       default: {}
     }
   },
-  computed: {
-    amount: {
-      get() {
-        return this.item.amount;
-      },
-      set(value) {
-        this.$store.commit('updateCartProductAmount', {
-          productId: this.item.productId,
-          amount: value
-        });
-      }
-    }
+  beforeMount() {
+    this.amount = this.item.amount;
   },
   methods: {
-    ...mapMutations({ deleteProduct: 'deleteCartProduct' }),
+    ...mapMutations({
+      deleteProduct: 'deleteCartProduct',
+      updateCartProductAmount: 'updateCartProductAmount'
+    }),
+  },
+  watch: {
+    amount() {
+      this.updateCartProductAmount({
+        productId: this.item.product.id,
+        amount: this.amount
+      });
+    }
   }
 };
 </script>
