@@ -129,41 +129,7 @@
             </fieldset>
 
             <div class="item__row">
-              <!--              <div class="form__counter">-->
-              <!--                <button-->
-              <!--                  type="button"-->
-              <!--                  aria-label="Убрать один товар"-->
-              <!--                  @click="productAmount&#45;&#45;"-->
-              <!--                >-->
-              <!--                  <svg-->
-              <!--                    width="12"-->
-              <!--                    height="12"-->
-              <!--                    fill="currentColor"-->
-              <!--                  >-->
-              <!--                    <use xlink:href="#icon-minus"/>-->
-              <!--                  </svg>-->
-              <!--                </button>-->
-
-              <!--                <input-->
-              <!--                  type="text"-->
-              <!--                  v-model.number="productAmount"-->
-              <!--                >-->
-
-              <!--                <button-->
-              <!--                  type="button"-->
-              <!--                  aria-label="Добавить один товар"-->
-              <!--                  @click="productAmount++"-->
-              <!--                >-->
-              <!--                  <svg-->
-              <!--                    width="12"-->
-              <!--                    height="12"-->
-              <!--                    fill="currentColor"-->
-              <!--                  >-->
-              <!--                    <use xlink:href="#icon-plus"/>-->
-              <!--                  </svg>-->
-              <!--                </button>-->
-              <!--              </div>-->
-              <Counter v-model="productAmount"/>
+              <Counter @update="updateAmount"/>
               <button
                 class="button button--primery"
                 type="submit"
@@ -277,6 +243,9 @@ export default {
         }
       );
     },
+    updateAmount(amount) {
+      this.productAmount = amount;
+    }
   }
 };
 </script>

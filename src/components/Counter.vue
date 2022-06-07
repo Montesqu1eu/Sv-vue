@@ -61,14 +61,14 @@ export default {
   methods: {
     countPlus() {
       if (this.counter < this.max) this.counter++;
-      this.$emit('input', this.counter);
+      this.$emit('update', this.counter);
     },
     countMinus() {
       if (this.counter > this.min) this.counter--;
-      this.$emit('input', this.counter);
+      this.$emit('update', this.counter);
     },
     onInput(event) {
-      this.$emit('input', event.target.value);
+      this.$emit('update', event.target.value);
     }
   }
 };

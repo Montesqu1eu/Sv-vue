@@ -11,20 +11,7 @@
     </span>
 
     <div class="product__counter form__counter">
-      <!--      <button type="button" aria-label="Убрать один товар">-->
-      <!--        <svg width="10" height="10" fill="currentColor">-->
-      <!--          <use xlink:href="#icon-minus"></use>-->
-      <!--        </svg>-->
-      <!--      </button>-->
-
-      <!--            <input type="text" v-model="amount" name="count">-->
-      <Counter :default-num="amount" v-model="amount"/>
-
-      <!--      <button type="button" aria-label="Добавить один товар">-->
-      <!--        <svg width="10" height="10" fill="currentColor">-->
-      <!--          <use xlink:href="#icon-plus"></use>-->
-      <!--        </svg>-->
-      <!--      </button>-->
+      <Counter @update="changeAmount" :default-num="amount"/>
     </div>
 
     <b class="product__price">
@@ -74,15 +61,14 @@ export default {
       deleteProduct: 'deleteCartProduct',
       updateCartProductAmount: 'updateCartProductAmount'
     }),
-  },
-  watch: {
-    amount() {
+    changeAmount(amount) {
+      this.amount = amount;
       this.updateCartProductAmount({
         productId: this.item.product.id,
         amount: this.amount
       });
     }
-  }
+  },
 };
 </script>
 
