@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { store } from 'core-js/internals/reflect-metadata';
 import products from '@/data/products';
 
 Vue.use(Vuex);
@@ -13,7 +12,9 @@ export default new Vuex.Store(
           productId: 1,
           amount: 2
         }
-      ]
+      ],
+      userAccessKey: null,
+      cartProductsData: []
     },
     mutations: {
       // addProductToCart(state, payload) {
@@ -61,6 +62,7 @@ export default new Vuex.Store(
       cartTotalPrice(state, getters) {
         return getters.cartDetailProducts.reduce((acc, item) => (item.product.price * item.amount) + acc, 0);
       }
-    }
+    },
+    actions: {}
   }
 );

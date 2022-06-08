@@ -1,5 +1,8 @@
 <template>
-  <main class="content container">
+  <main class="content container" v-if="productLoading">Загрузка товара...</main>
+  <main class="content container" v-else-if="!productData">Загрузка не удалась</main>
+
+  <main class="content container" v-else>
     <div class="content__top">
       <ul class="breadcrumbs">
         <li class="breadcrumbs__item">
@@ -60,7 +63,7 @@
                 Цвет:
               </legend>
               <ul class="colors">
-                <li class="colors__item" v-for="(item,index) in product.colors" :key="index">
+                <li class="colors__item" v-for="(item,index) in productData.colors" :key="index">
                   <label class="colors__label">
                     <input
                       class="colors__radio sr-only"
@@ -71,7 +74,7 @@
                     >
                     <span
                       class="colors__value"
-                      :style="{'background-color' : item.colorValue}"
+                      :style="{'background-color' : item.code}"
                     />
                   </label>
                 </li>
@@ -210,10 +213,10 @@
 </template>
 
 <script>
-import products from '@/data/products';
-import categories from '@/data/categories';
 import numberFormat from '@/helpers/numberFormat';
 import Counter from '@/components/Counter';
+import axios from 'axios';
+import { API_BASE_URL } from '@/config';
 
 export default {
   name: 'ProductPage',
@@ -223,15 +226,20 @@ export default {
   },
   data() {
     return {
-      productAmount: 1
+      productAmount: 1,
+      productData: null,
+
+      productLoading: false,
+      productLoadingFailed: false
     };
   },
   computed: {
     product() {
-      return products.find(product => product.id === +this.$route.params.id);
+      this.productData.image = this.productData.image.file.url;
+      return this.productData;
     },
     category() {
-      return categories.find(category => category.id === this.product.categoryId);
+      return this.productData.category;
     },
   },
   methods: {
@@ -245,6 +253,31 @@ export default {
     },
     updateAmount(amount) {
       this.productAmount = amount;
+    },
+    loadProduct() {
+      this.productLoading = true;
+      this.productLoadingFailed = false;
+      axios.get(API_BASE_URL + '/products/' + this.$route.params.id)
+        .then(response => this.productData = response.data)
+        .catch(error => {
+          if (error.response.status === 404) {
+            this.$router.push({ name: 'notfound' });
+          } else {
+            this.productLoadingFailed = true;
+          }
+        })
+        .finally(() => this.productLoading = false);
+    }
+  },
+  // created() {
+  //   this.loadProduct();
+  // },
+  watch: {
+    '$route.params.id': {
+      handler() {
+        this.loadProduct();
+      },
+      immediate: true
     }
   }
 };
