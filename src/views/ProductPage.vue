@@ -136,9 +136,12 @@
               <button
                 class="button button--primery"
                 type="submit"
+                :disabled="productAddSending"
               >
                 В корзину
               </button>
+              <div v-show="productAdded">Товар добавлен в корзину</div>
+              <div v-show="productAddSending">Добавляем товар в корзину...</div>
             </div>
           </form>
         </div>
@@ -217,6 +220,7 @@ import numberFormat from '@/helpers/numberFormat';
 import Counter from '@/components/Counter';
 import axios from 'axios';
 import { API_BASE_URL } from '@/config';
+import { mapActions } from 'vuex';
 
 export default {
   name: 'ProductPage',
@@ -230,7 +234,11 @@ export default {
       productData: null,
 
       productLoading: false,
-      productLoadingFailed: false
+      productLoadingFailed: false,
+
+      productAdded: false,
+      productAddSending: false
+
     };
   },
   computed: {
@@ -243,13 +251,20 @@ export default {
     },
   },
   methods: {
+    ...mapActions(['addProductToCart']),
     addToCart() {
-      this.$store.commit('addProductToCart',
+      this.productAdded = false;
+      this.productAddSending = true;
+      this.addProductToCart(
         {
           productId: this.product.id,
           amount: this.productAmount
         }
-      );
+      )
+        .then(() => {
+          this.productAdded = true;
+          this.productAddSending = false;
+        });
     },
     updateAmount(amount) {
       this.productAmount = amount;
