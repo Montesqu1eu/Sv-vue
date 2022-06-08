@@ -22,6 +22,20 @@ export async function addProductToCart(context, {
   productId,
   amount
 }) {
+  return await axios
+    .put(API_BASE_URL + '/baskets/products', {
+        productId: productId,
+        quantity: amount
+      },
+      {
+        params: {
+          userAccessKey: context.state.userAccessKey
+        }
+      })
+    .then(response => {
+      context.commit('updateCartProductsData', response.data.items);
+      context.commit('syncCartProducts');
+    });
 
 }
 
