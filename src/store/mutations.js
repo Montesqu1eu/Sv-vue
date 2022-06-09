@@ -28,3 +28,12 @@ export function syncCartProducts(state) {
     };
   });
 }
+
+export function resetCart(state) {
+  state.cartProducts = [];
+  state.cartProductsData = [];
+}
+
+export function updateOrderInfo(state, orderInfo) {
+  state.orderInfo = orderInfo;
+}

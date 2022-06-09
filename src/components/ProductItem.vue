@@ -44,7 +44,6 @@
 </template>
 
 <script>
-import goToPage from '@/helpers/goToPage';
 import numberFormat from '@/helpers/numberFormat';
 
 export default {
@@ -53,9 +52,6 @@ export default {
   filters: {
     numberFormat
   },
-  methods: {
-    goToPage
-  }
 };
 </script>
 

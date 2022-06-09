@@ -1,6 +1,18 @@
 import axios from 'axios';
 import { API_BASE_URL } from '@/config';
 
+export async function loadOrderInfo(context, orderId) {
+  await axios
+    .get(API_BASE_URL + '/orders/' + orderId, {
+      params: {
+        userAccessKey: context.state.userAccessKey
+      }
+    })
+    .then(response => {
+      context.commit('updateOrderInfo', response.data);
+    });
+}
+
 export async function loadCart(context) {
   await axios
     .get(API_BASE_URL + '/baskets', {
@@ -36,7 +48,6 @@ export async function addProductToCart(context, {
       context.commit('updateCartProductsData', response.data.items);
       context.commit('syncCartProducts');
     });
-
 }
 
 export async function updateCartProductAmount(context, {
@@ -79,5 +90,8 @@ export async function deleteCartProductItem(context, productId) {
       data: {
         productId: productId
       }
+    })
+    .catch(error => {
+      context.commit('updateCartProductsData', error.data.items);
     });
 }

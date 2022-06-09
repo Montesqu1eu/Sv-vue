@@ -17,6 +17,16 @@ const routes = [
     component: () => import('../views/CartPage')
   },
   {
+    name: 'order',
+    path: '/order',
+    component: () => import('../views/OrderPage')
+  },
+  {
+    name: 'orderInfo',
+    path: '/order/:id',
+    component: () => import('../views/OrderInfoPage')
+  },
+  {
     name: 'notfound',
     path: '*',
     component: () => import('../views/NotFoundPage')

@@ -1,5 +1,6 @@
 export default () => ({
   cartProducts: [],
   userAccessKey: null,
-  cartProductsData: []
+  cartProductsData: [],
+  orderInfo: null
 })
