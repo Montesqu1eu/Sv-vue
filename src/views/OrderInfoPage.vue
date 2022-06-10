@@ -1,5 +1,5 @@
 <template>
-  <main class="content container">
+  <main class="content container" v-if="order">
     <div class="content__top">
 
 
@@ -77,11 +77,6 @@ import numberFormat from '@/helpers/numberFormat';
 
 export default {
   name: 'OrderInfoPage',
-  created() {
-    if (this.$store.state.orderInfo && this.$store.state.orderInfo.id === this.$route.params.id) return;
-
-    this.$store.dispatch('loadOrderInfo', this.$route.params.id);
-  },
   filters: {
     numberFormat
   },
@@ -93,6 +88,18 @@ export default {
       products: 'cartDetailProducts',
       totalPrice: 'cartTotalPrice'
     }),
+  },
+  watch: {
+    '$route.params.id': {
+      handler() {
+        // if (this.$store.state.orderInfo && this.$store.state.orderInfo.id === this.$route.params.id) return;
+        this.$store.dispatch('loadOrderInfo', this.$route.params.id)
+          .catch(
+            () => this.$router.push({ name: 'notfound' })
+          );
+      },
+      immediate: true
+    }
   }
 };
 </script>

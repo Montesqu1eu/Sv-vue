@@ -2,7 +2,7 @@ import axios from 'axios';
 import { API_BASE_URL } from '@/config';
 
 export async function loadOrderInfo(context, orderId) {
-  await axios
+  return await axios
     .get(API_BASE_URL + '/orders/' + orderId, {
       params: {
         userAccessKey: context.state.userAccessKey
@@ -10,7 +10,9 @@ export async function loadOrderInfo(context, orderId) {
     })
     .then(response => {
       context.commit('updateOrderInfo', response.data);
-    });
+    })
+
+    ;
 }
 
 export async function loadCart(context) {
@@ -36,14 +38,13 @@ export async function addProductToCart(context, {
 }) {
   return await axios
     .put(API_BASE_URL + '/baskets/products', {
-        productId: productId,
-        quantity: amount
-      },
-      {
-        params: {
-          userAccessKey: context.state.userAccessKey
-        }
-      })
+      productId: productId,
+      quantity: amount
+    }, {
+      params: {
+        userAccessKey: context.state.userAccessKey
+      }
+    })
     .then(response => {
       context.commit('updateCartProductsData', response.data.items);
       context.commit('syncCartProducts');
@@ -63,14 +64,13 @@ export async function updateCartProductAmount(context, {
 
   return await axios
     .put(API_BASE_URL + '/baskets/products', {
-        productId: productId,
-        quantity: amount
-      },
-      {
-        params: {
-          userAccessKey: context.state.userAccessKey
-        }
-      })
+      productId: productId,
+      quantity: amount
+    }, {
+      params: {
+        userAccessKey: context.state.userAccessKey
+      }
+    })
     .then(response => {
       context.commit('updateCartProductsData', response.data.items);
     })
