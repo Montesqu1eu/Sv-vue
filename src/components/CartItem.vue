@@ -33,7 +33,7 @@
 
 <script>
 import numberFormat from '@/helpers/numberFormat';
-import { mapMutations } from 'vuex';
+import { mapMutations, mapActions } from 'vuex';
 import Counter from '@/components/Counter';
 
 export default {
@@ -58,12 +58,21 @@ export default {
   },
   methods: {
     ...mapMutations({
-      deleteProduct: 'deleteCartProduct',
+      deleteCartProduct: 'deleteCartProduct',
       updateCartProductAmount: 'updateCartProductAmount'
     }),
+    ...mapActions(['deleteCartProductItem']),
+    deleteProduct(productId) {
+      this.deleteCartProduct(productId);
+      this.deleteCartProductItem(productId);
+    },
     changeAmount(amount) {
       this.amount = amount;
       this.updateCartProductAmount({
+        productId: this.item.product.id,
+        amount: this.amount
+      });
+      this.$store.dispatch('updateCartProductAmount', {
         productId: this.item.product.id,
         amount: this.amount
       });

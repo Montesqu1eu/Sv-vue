@@ -14,6 +14,10 @@
         :price-to.sync="filterPriceTo"
       />
       <section class="catalog">
+        <loader v-if="productsLoading" object="#000000" color1="#ffffff" color2="#17fd3d" size="5" speed="2" bg="#343a40" objectbg="#999793" opacity="80" name="circular"></loader>
+        <div v-if="productsLoadingFailed">Ошибка загрузки.
+          <button @click.prevent="loadProducts">Поробовать ещё раз</button>
+        </div>
         <product-list :products="products"/>
         <base-pagination
           v-model="page"
@@ -47,7 +51,10 @@ export default {
       page: 1,
       productsPerPage: 3,
 
-      productsData: null
+      productsData: null,
+
+      productsLoading: false,
+      productsLoadingFailed: false
     };
   },
   computed: {
@@ -67,6 +74,8 @@ export default {
   },
   methods: {
     loadProducts() {
+      this.productsLoading = true;
+      this.productsLoadingFailed = false;
       clearTimeout(this.loadProductsTimer);
       this.loadProductsTimer = setTimeout(() => {
         axios.get(API_BASE_URL + '/products', {
@@ -80,6 +89,8 @@ export default {
           }
         })
           .then(response => this.productsData = response.data)
+          .catch(() => this.productsLoadingFailed = true)
+          .then(() => this.productsLoading = false)
         ;
       }, 0);
     }

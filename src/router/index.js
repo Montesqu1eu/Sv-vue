@@ -1,7 +1,4 @@
-import Vue from 'vue';
 import VueRouter from 'vue-router';
-
-Vue.use(VueRouter);
 
 const routes = [
   {
@@ -12,20 +9,34 @@ const routes = [
   {
     name: 'product',
     path: '/product/:id',
-    component: () => import('../views/ProductPage'),
+    component: () => import('../views/ProductPage')
   },
   {
     name: 'cart',
     path: '/cart',
-    component: () => import('../views/CartPage'),
+    component: () => import('../views/CartPage')
+  },
+  {
+    name: 'order',
+    path: '/order',
+    component: () => import('../views/OrderPage')
+  },
+  {
+    name: 'orderInfo',
+    path: '/order/:id',
+    component: () => import('../views/OrderInfoPage')
   },
   {
     name: 'notfound',
     path: '*',
-    component: () => import('../views/NotFoundPage'),
+    component: () => import('../views/NotFoundPage')
   }
 ];
 
-const router = new VueRouter({ routes });
+const router = new VueRouter({
+  // mode: 'history',
+  routes,
+  base: '/tehnozavr-vue'
+});
 
 export default router;
