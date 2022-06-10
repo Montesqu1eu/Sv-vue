@@ -103,7 +103,6 @@
 </template>
 
 <script>
-import colors from '@/data/colors';
 
 import axios from 'axios';
 import { API_BASE_URL } from '@/config';

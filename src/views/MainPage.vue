@@ -14,7 +14,7 @@
         :price-to.sync="filterPriceTo"
       />
       <section class="catalog">
-        <div v-if="productsLoading">Загрузка товаров...</div>
+        <loader v-if="productsLoading" object="#000000" color1="#ffffff" color2="#17fd3d" size="5" speed="2" bg="#343a40" objectbg="#999793" opacity="80" name="circular"></loader>
         <div v-if="productsLoadingFailed">Ошибка загрузки.
           <button @click.prevent="loadProducts">Поробовать ещё раз</button>
         </div>

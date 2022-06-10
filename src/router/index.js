@@ -34,8 +34,9 @@ const routes = [
 ];
 
 const router = new VueRouter({
-  mode: 'history',
-  routes
+  // mode: 'history',
+  routes,
+  base: '/tehnozavr-vue'
 });
 
 export default router;

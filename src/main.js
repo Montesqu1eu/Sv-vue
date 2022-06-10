@@ -3,8 +3,10 @@ import App from './App.vue';
 import router from '@/router';
 import store from '@/store';
 import VueRouter from 'vue-router';
+import loader from 'vue-ui-preloader';
 
-Vue.use(VueRouter);
+Vue.use(VueRouter)
+  .use(loader);
 
 new Vue({
   router,

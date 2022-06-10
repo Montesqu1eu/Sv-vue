@@ -73,8 +73,10 @@
         <div class="cart__block">
           <ul class="cart__orders">
             <li class="cart__order" v-for="(item,index) in products" :key="index">
-              <h3>{{ item.product.title }}</h3>
-              <b>{{ item.product.price | numberFormat }} ₽</b>
+              <h3>{{ item.product.title }}
+                <div>x {{ item.amount }}</div>
+              </h3>
+              <b>{{ item.product.price * item.amount | numberFormat }} ₽</b>
               <span>Артикул: {{ item.product.id }}</span>
             </li>
           </ul>
